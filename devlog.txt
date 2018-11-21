@@ -1,14 +1,3 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template, (Ctrl-Shift up x5, Ctrl-X, Ctrl-V x2)
- modify appropriately.
-Each entry should begin with the following format:
- firstL -- TIMESTAMP\n
-e.g.: 
-clydeS -- 2999-12-31 23:59
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 mulLimon_soda
 Tania Cao
 Johnson Li
@@ -16,7 +5,7 @@ Hasif Ahmed
 Mohtasim Howlader
 pd 8
 ---------------------
-<Project Title/Description>
+Tuned Recipes
 
 
  ______   ______   __   __   __       ______   _______     
@@ -40,19 +29,21 @@ taniaC -- 2018-11-19 11:35
 ==============================================================
 All -- 2018-11-19 13:55
 --------------------------------------------------------------
-0. Made a list of project ideas. 
+0. made a list of project ideas. 
 ==============================================================
 All -- 2018-11-20 13:50
 --------------------------------------------------------------
-0. Decided on project proposal, decided on which APIs we're looking for. 
+0. decided on project proposal
+1. decided on which APIs we're looking for. 
 ==============================================================
-fristL -- TIMESTAMP
+All -- 2018-11-20 21:30
 --------------------------------------------------------------
-<Thing fristL did.>
+0. created project proposal
+1. found useful APIs
 ==============================================================
-fristL -- TIMESTAMP
+taniaC -- 2018-11-20 11:30
 --------------------------------------------------------------
-<Thing fristL did.>
+0. updated devlog
 ==============================================================
 fristL -- TIMESTAMP
 --------------------------------------------------------------
