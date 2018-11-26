@@ -39,7 +39,7 @@ $ . <name_of_vEnv>/bin/activate
 (<name_of_vEnv>) $ pip3 install wheel
 ```
 ### Contributors
-* [Tania Cao] (https://github.com/taniacao12)
+* <a href= https://github.com/taniacao12> Tania Cao </a>
 * [Mohtasim Howlader] (https://github.com/mhowlader)
 * [Johnson Li] (https://github.com/JohnsonLi)
 * [Hasif Ahmed] (https://github.com/HasifAhmed)
