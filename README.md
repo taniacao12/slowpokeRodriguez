@@ -40,6 +40,6 @@ $ . <name_of_vEnv>/bin/activate
 ```
 ### Contributors
 * <a href= https://github.com/taniacao12> Tania Cao </a>
-* [Mohtasim Howlader] (https://github.com/mhowlader)
-* [Johnson Li] (https://github.com/JohnsonLi)
-* [Hasif Ahmed] (https://github.com/HasifAhmed)
+* <a href= https://github.com/mhowlader> Mohtasim Howlader </a>
+* <a href= https://github.com/JohnsonLi> Johnson Li </a>
+* <a href= https://github.com/HasifAhmed> Hasif Ahmed </a>
