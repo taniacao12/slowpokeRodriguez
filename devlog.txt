@@ -50,3 +50,7 @@ johnsonL -- 2018-11-26 14:04
 0. Added templates: base.html, home.html, login.html
 1. Added routes: root, login, and auth
 ==============================================================
+mohtasimH -- 2018-11-27 2:00
+--------------------------------------------------------------
+0. Updated design doc with further clarification of the roles and added more explanations of database, component map, and sitemap,   specifically on all of the pages that are accessible to the logged in user.
+==============================================================
