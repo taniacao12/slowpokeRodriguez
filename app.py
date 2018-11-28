@@ -12,17 +12,22 @@ passw = "b"
 @app.route("/")
 def home():
     if "logged_in" in session:
-        return redirect(url_for("home"))
+        return render_template("home.html", user = session["logged_in"])
     return render_template("home.html")
 
 @app.route("/login")
 def login():
     return render_template("login.html")
 
+# @app.route("logout")
+# def logout():
+#     session.pop()
+#     return
+
 @app.route("/auth")
 def auth():
     if user == request.args["username"] and passw == request.args["password"]:
-        session["logged_in"] = request.form["user"]
+        session["logged_in"] = request.args["username"]
         return redirect(url_for("home"))
 
     flash("Username or password is incorrect")
