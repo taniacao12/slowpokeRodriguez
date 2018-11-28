@@ -19,10 +19,10 @@ def home():
 def login():
     return render_template("login.html")
 
-# @app.route("logout")
-# def logout():
-#     session.pop()
-#     return
+@app.route("/logout")
+def logout():
+    session.pop("logged_in")
+    return redirect(url_for("home"))
 
 @app.route("/auth")
 def auth():
