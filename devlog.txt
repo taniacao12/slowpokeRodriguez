@@ -45,14 +45,28 @@ taniaC -- 2018-11-20 11:30
 --------------------------------------------------------------
 0. updated devlog
 ==============================================================
+taniaC -- 2018-11-26 13:35
+--------------------------------------------------------------
+0. updated README
+==============================================================
 johnsonL -- 2018-11-26 14:04
 --------------------------------------------------------------
-0. Added templates: base.html, home.html, login.html
-1. Added routes: root, login, and auth
+0. added templates: base.html, home.html, login.html
+1. added routes: root, login, and auth
 ==============================================================
 mohtasimH -- 2018-11-27 2:00
 --------------------------------------------------------------
-0. Updated design doc with further clarification of the roles, including the specific languages each person will be working with mostly 
-   in the front end or back end. Added more explanations of database, component map, and sitemap, specifically on the pages that are 
-   accessible to the logged-in user (ex. the edit page). Added what each API will be used for.
+0. updated design doc with further clarification of the...
+   a) roles --> included specific languages each person will be working with in the front end or back end
+   b) database, component map, and sitemap (pages accessible to the logged-in user)
+   c) API --> what is each one being use for
+==============================================================
+taniaC -- 2018-11-27 13:40
+--------------------------------------------------------------
+0. updated design doc with a clarification of how the music data relates to the recipes and the user's preferences
+1. updated devlog
+==============================================================
+taniaC -- 2018-11-28 13:05
+--------------------------------------------------------------
+0. updated devlog
 ==============================================================
