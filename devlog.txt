@@ -52,5 +52,7 @@ johnsonL -- 2018-11-26 14:04
 ==============================================================
 mohtasimH -- 2018-11-27 2:00
 --------------------------------------------------------------
-0. Updated design doc with further clarification of the roles and added more explanations of database, component map, and sitemap,   specifically on all of the pages that are accessible to the logged in user.
+0. Updated design doc with further clarification of the roles, including the specific languages each person will be working with mostly 
+   in the front end or back end. Added more explanations of database, component map, and sitemap, specifically on the pages that are 
+   accessible to the logged-in user (ex. the edit page). Added what each API will be used for.
 ==============================================================
