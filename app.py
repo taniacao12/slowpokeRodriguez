@@ -1,10 +1,17 @@
-import os, csv, time, sqlite3
+import os, csv, time, sqlite3, json
+from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request,session,url_for,redirect,flash
+
+from util import db
+
+
 
 app = Flask(__name__)
 
 app.secret_key = os.urandom(32) #key for session
+
+
 
 user = "a"
 passw = "b"
