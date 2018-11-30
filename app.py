@@ -5,12 +5,9 @@ from flask import Flask, render_template, request,session,url_for,redirect,flash
 
 from util import db
 
-
-
 app = Flask(__name__)
 
 app.secret_key = os.urandom(32) #key for session
-
 
 
 user = "a"
