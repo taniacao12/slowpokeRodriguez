@@ -10,10 +10,6 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(32) #key for session
 
-
-user = "a"
-passw = "b"
-
 @app.route("/")
 def home():
     if "logged_in" in session:
@@ -33,7 +29,7 @@ def adduser():
     if(not user or not password or not passwordc):
         flash("Please fill in all fields")
         return redirect(url_for("register"))
-    
+
     if(db.check_user(user)):
         flash("User already exists")
         return redirect(url_for("register"))

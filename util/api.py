@@ -10,7 +10,7 @@ def search():
     recipes_res = info["recipes"]
 
     recipes = {}
-    for num in range(5):
+    for num in range(10):
         title = recipes_res[num]["title"]
 
         recipes[title] = [
