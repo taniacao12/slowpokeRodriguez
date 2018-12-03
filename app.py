@@ -4,6 +4,7 @@ from urllib.request import Request, urlopen
 from flask import Flask, render_template, request,session,url_for,redirect,flash
 
 from util import db
+from util import api
 
 app = Flask(__name__)
 
@@ -16,12 +17,34 @@ passw = "b"
 @app.route("/")
 def home():
     if "logged_in" in session:
-        return render_template("home.html", user = session["logged_in"])
-    return render_template("home.html")
+        return render_template("home.html", user = session["logged_in"], logged_in=True, recipes=api.search())
+    return render_template("home.html", logged_in=False, recipes=api.search())
 
 @app.route("/register")
 def register():
     return render_template("register.html")
+
+@app.route("/adduser")
+def adduser():
+    user = request.args["username"].strip()
+    password = request.args["password"]
+    passwordc = request.args["confirm-password"]
+
+    if(not user or not password or not passwordc):
+        flash("Please fill in all fields")
+        return redirect(url_for("register"))
+    
+    if(db.check_user(user)):
+        flash("User already exists")
+        return redirect(url_for("register"))
+
+    if(password != passwordc):
+        flash("Passwords don't match")
+        return redirect(url_for("register"))
+
+    db.add_user(user, password)
+    session["logged_in"] = request.args["username"]
+    return redirect(url_for("home"))
 
 @app.route("/login")
 def login():
@@ -34,15 +57,12 @@ def logout():
 
 @app.route("/auth")
 def auth():
-    if user == request.args["username"] and passw == request.args["password"]:
+    if db.auth_user(request.args["username"], request.args["password"]):
         session["logged_in"] = request.args["username"]
         return redirect(url_for("home"))
-
-    flash("Username or password is incorrect")
-    return render_template("login.html")
-
-
-    return redirect(url_for("home"))
+    else:
+        flash("username or password is incorrect")
+        return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.debug = True
