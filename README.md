@@ -35,10 +35,11 @@ Installing virtual environment, flask, and wheel.
 ```
 $ python -m venv <name_of_vEnv>
 $ . <name_of_vEnv>/bin/activate
-(<name_of_vEnv>) $ pip3 install flask
-(<name_of_vEnv>) $ pip3 install wheel
+(<name_of_vEnv>) $ pip install -r <path-to-file>requirements.txt
 ```
+
 ### Contributors
+
 * <a href= https://github.com/taniacao12> Tania Cao </a>
 * <a href= https://github.com/mhowlader> Mohtasim Howlader </a>
 * <a href= https://github.com/JohnsonLi> Johnson Li </a>
