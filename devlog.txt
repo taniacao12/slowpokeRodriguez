@@ -83,3 +83,10 @@ taniaC -- 2018-11-29 13:52
 --------------------------------------------------------------
 0. updated devlog
 ==============================================================
+johnsonL -- 2018-12-3 01:21
+--------------------------------------------------------------
+0. Added regster template and route
+1. Made db functions for adding user when registering and authentication when logging in.
+2. Restructured navbar.
+3. Got food2fork api to work and display something, but some jinja stuff needs to be fixed
+==============================================================
