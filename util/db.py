@@ -45,11 +45,19 @@ def auth_user(username, password):
         if(entry[0] == username and entry[1] == password):
             db.close()
             return True
-    
+
     db.close()
     return False
 
-    
+def add_recipe(username,name,ingred, instruct, pics):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    c.execute("INSERT INTO recipes VALUES(?,?,?,?,?)", (username, name, ingred, instruct, pics))
+    db.close()
+    return True
+
+
 
 
 create_tables()

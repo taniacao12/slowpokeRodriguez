@@ -60,6 +60,14 @@ def auth():
         flash("username or password is incorrect")
         return redirect(url_for("login"))
 
+#@app.route("/search", methods = ["POST"])
+#ef searching():
+#    return render_template("search.html")
+
+@app.route("/addrecipe")
+def addrecipe():
+    return render_template("addrecipe.html")
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
