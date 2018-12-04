@@ -125,3 +125,5 @@ ehthumbs.db
 
 # mypy
 .mypy_cache/
+
+keys.json
