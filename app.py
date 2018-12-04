@@ -51,6 +51,11 @@ def logout():
     session.pop("logged_in")
     return redirect(url_for("home"))
 
+#User personalization screen after registered
+@app.route("/profile")
+def profile_personalize():
+    return redirect(url_for("home"))
+
 @app.route("/auth")
 def auth():
     if db.auth_user(request.args["username"], request.args["password"]):
