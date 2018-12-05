@@ -57,7 +57,21 @@ def add_recipe(username,name,ingred, instruct, pics):
     db.close()
     return True
 
+def user_recipes():
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    recipes = {}
+    for num in c.execute("SELECT * FROM recipes"):
+        title = num[1]
 
+        recipes[title] = [
+            num[0],
+            num[2],
+            num[3],
+            num[4],
+        ]
+    db.close()
+    return recipes
 
 
 create_tables()

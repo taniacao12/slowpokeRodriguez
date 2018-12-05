@@ -69,9 +69,21 @@ def auth():
 #ef searching():
 #    return render_template("search.html")
 
+
 @app.route("/addrecipe")
 def addrecipe():
     return render_template("addrecipe.html")
+
+@app.route("/dbadd")
+def added():
+    db.add_recipe(session["logged_in"], request.args["title"],request.args["ingredients"],request.args["instructions"],request.args["link"])
+    return redirect(url_for("userentries"))
+
+@app.route("/userentries")
+def userentries():
+    if "logged_in" in session:
+        return render_template("userfood.html", user = session["logged_in"], logged_in=True, recipes= db.user_recipes())
+    return render_template("userfood.html", logged_in=False, recipes= db.user_recipes())
 
 if __name__ == "__main__":
     app.debug = True
