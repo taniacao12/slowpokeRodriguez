@@ -27,7 +27,9 @@ def search():
             keyMain = ""
             continue
 
+    keyMain = "31ba86125159f0785f5e18dc89b4730d"
     URL = "https://www.food2fork.com/api/search?key=" + keyMain + "&q=chicken"
+
     response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
     info = json.loads(response)
     print(info)
