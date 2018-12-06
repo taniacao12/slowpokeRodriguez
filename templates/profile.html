@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+
+{{logged_in}}
+
+<br>
+<br>
+<br>
+
+<h1> {{user}}'s Profile</h1>
+
+<br>
+<br>
+
+<h3> Preferences </h3>
+{% if not preferences %}
+    <span style="color: darkgray"> No preferences. Enter some! </span>
+{% else %}
+    {% for thing in preferences %}
+        <span class="badge badge-secondary"> {{thing}} </span>
+    {% endfor %}
+{% endif %}
+
+<br> 
+<br>
+<form action="/updatepreferences">
+    <div class="container-fluid">
+      <div class="form-group">
+        <label for="preference">Preferences</label>
+        <input type="text"  class="form-control" name="preference" placeholder="Preferences">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form> 
+
+
+{% endblock %}
