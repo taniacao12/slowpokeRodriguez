@@ -13,8 +13,8 @@ app.secret_key = os.urandom(32) #key for session
 @app.route("/")
 def home():
     if "logged_in" in session:
-        return render_template("home.html", user = session["logged_in"], logged_in=True, recipes=api.search())
-    return render_template("home.html", logged_in=False, recipes=api.search())
+        return render_template("home.html", user = session["logged_in"], logged_in=True, recipes=api.search("chicken"))
+    return render_template("home.html", logged_in=False, recipes=api.search("chicken"))
 
 @app.route("/register")
 def register():
