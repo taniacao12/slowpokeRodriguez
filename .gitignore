@@ -126,5 +126,7 @@ ehthumbs.db
 # mypy
 .mypy_cache/
 
-keys.json
-api_keys
+api_keys.txt
+food2fork_keys.txt
+lastFM_keys.txt
+youtube_keys.txt
