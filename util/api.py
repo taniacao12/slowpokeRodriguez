@@ -7,30 +7,40 @@ curInd = 0 # current index of working api_keys
 
 
 
-with open("api_keys.txt") as file:
+with open("food2fork_keys.txt") as file:
     api_keys = file.read()
     print(api_keys)
     api_keys=api_keys.strip("\n")
     api_list = api_keys.split(",")
-
     print(api_list)
 
 
-def search():
-
+def search(query):
     keyMain = "" #key to be used
     #need to add try except here
+    URL=""
+    info=""
     for key in api_list:
-        if verify_key(key) == True:
+        URL = "https://www.food2fork.com/api/search?key=" + key + "&q=" + query
+        print(URL)
+        response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
+        info = json.loads(response)
+        if "error" not in info:
             keyMain = key
-        else:
-            keyMain = ""
-            continue
+            break
 
-    URL = "https://www.food2fork.com/api/search?key=" + keyMain + "&q=chicken"
-    response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
-    info = json.loads(response)
-    print(info)
+        # if verify_key(key) == True:
+        #     keyMain = key
+        # else:
+        #     keyMain = ""
+        #     continue
+    print("keymain" + keyMain)
+    #keyMain="94c7e919219ad94b3d5997ef849a8884"
+
+    # URL = "https://www.food2fork.com/api/search?key=" + keyMain + "&q=" + query
+    # response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
+    # info = json.loads(response)
+    #print(info)
     recipes_res = info["recipes"]
 
     recipes = {}
@@ -42,7 +52,7 @@ def search():
             recipes_res[num]["source_url"],
             recipes_res[num]["image_url"]
         ]
-    print("it working" + key)
+    #print("it working" + key)
     return recipes
 
 
@@ -65,5 +75,5 @@ def test():
     response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
     print(response)
 
-search()
+search("chicken")
 #test()
