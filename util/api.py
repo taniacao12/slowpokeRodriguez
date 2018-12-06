@@ -27,6 +27,7 @@ def search(query):
         info = json.loads(response)
         if "error" not in info:
             keyMain = key
+<<<<<<< HEAD
             break
 
         # if verify_key(key) == True:
@@ -41,6 +42,18 @@ def search(query):
     # response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
     # info = json.loads(response)
     #print(info)
+=======
+        else:
+            keyMain = ""
+            continue
+
+    keyMain = "31ba86125159f0785f5e18dc89b4730d"
+    URL = "https://www.food2fork.com/api/search?key=" + keyMain + "&q=chicken"
+
+    response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
+    info = json.loads(response)
+    print(info)
+>>>>>>> 7a71eb201701a9fd848f0f254f7faa08e50e840e
     recipes_res = info["recipes"]
 
     recipes = {}

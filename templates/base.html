@@ -1,4 +1,5 @@
-<!DOCTYPE html> <!--Basic template for all other pages -->
+<!--Basic template for all other pages -->
+<!DOCTYPE html>
 <html>
   <head>
     <!-- Replaceable title -->
@@ -7,18 +8,12 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     {% endblock %}
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Muli');
-
-        * {
-          font-family: "Muli";
-        }    
-
-        a.navbar-brand {
-          text-decoration: none;
-        }
+      @import url('https://fonts.googleapis.com/css?family=Muli');
+      * {font-family: "Muli";}    
+      a.navbar-brand {text-decoration: none;}
     </style> 
   </head>
-
+  
   <body>
     {% block header %}
     <nav class="navbar fixed-top navbar-dark bg-dark"> 

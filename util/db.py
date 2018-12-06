@@ -54,6 +54,7 @@ def add_recipe(username,name,ingred, instruct, pics):
     c = db.cursor()
 
     c.execute("INSERT INTO recipes VALUES(?,?,?,?,?)", (username, name, ingred, instruct, pics))
+    db.commit()
     db.close()
     return True
 
@@ -61,15 +62,16 @@ def user_recipes():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     recipes = {}
+    i = 0
     for num in c.execute("SELECT * FROM recipes"):
-        title = num[1]
-
-        recipes[title] = [
+        recipes[i] = [
             num[0],
+            num[1],
             num[2],
             num[3],
             num[4],
         ]
+        i += 1
     db.close()
     print(recipes)
     return recipes
