@@ -40,7 +40,7 @@ def adduser():
 
     db.add_user(user, password)
     session["logged_in"] = request.args["username"]
-    return redirect(url_for("home"))
+    return redirect(url_for("profile"))
 
 @app.route("/login")
 def login():
@@ -53,8 +53,11 @@ def logout():
 
 #User personalization screen after registered
 @app.route("/profile")
-def profile_personalize():
-    return redirect(url_for("home"))
+def profile():
+    preferences = db.get_preference(session["logged_in"])
+    print("app route preferencesd!!!!!: : : : ::")
+    print(preferences)
+    return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True)
 
 @app.route("/auth")
 def auth():
@@ -65,13 +68,26 @@ def auth():
         flash("username or password is incorrect")
         return redirect(url_for("login"))
 
-#@app.route("/search", methods = ["POST"])
-#ef searching():
-#    return render_template("search.html")
-
 @app.route("/addrecipe")
 def addrecipe():
     return render_template("addrecipe.html")
+
+@app.route("/dbadd")
+def added():
+    db.add_recipe(session["logged_in"], request.args["title"],request.args["ingredients"],request.args["instructions"],request.args["link"])
+    return redirect(url_for("userentries"))
+
+@app.route("/userentries")
+def userentries():
+    if "logged_in" in session:
+        return render_template("userfood.html", user = session["logged_in"], logged_in=True, recipes= db.user_recipes())
+    return render_template("userfood.html", logged_in=False, recipes= db.user_recipes())
+
+@app.route("/updatepreferences")
+def update_preferences():
+    preferences = request.args["preference"]
+    db.update(preferences, session['logged_in'])
+    return redirect(url_for("profile"))
 
 if __name__ == "__main__":
     app.debug = True

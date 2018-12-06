@@ -18,7 +18,7 @@ def add_user(username, password):
     ''' insert credentials for newly registered user into database '''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("INSERT INTO user_info VALUES(?, ?, ?)", (username, password, "none"))
+    c.execute("INSERT INTO user_info VALUES(?, ?, {})".format("'none'"), (username, password))
 
     db.commit() #save changes
     db.close() #close database
@@ -57,7 +57,42 @@ def add_recipe(username,name,ingred, instruct, pics):
     db.close()
     return True
 
+def user_recipes():
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    recipes = {}
+    for num in c.execute("SELECT * FROM recipes"):
+        title = num[1]
 
+        recipes[title] = [
+            num[0],
+            num[2],
+            num[3],
+            num[4],
+        ]
+    db.close()
+    print(recipes)
+    return recipes
 
+def get_preference(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
 
+    preference = []
+    for i in c.execute("select preferences from user_info where username='" + username + "'"):
+        preference = i[0].split(",")
+
+    return preference
+    db.close()
+
+def update(preferences, username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    c.execute("update user_info set preferences={} where username={}".format("'" + preferences + "'","'" + username + "'"))
+
+    db.commit()
+    db.close()
+
+# get_preference("admin")
 create_tables()

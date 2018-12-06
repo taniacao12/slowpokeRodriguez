@@ -127,3 +127,4 @@ ehthumbs.db
 .mypy_cache/
 
 keys.json
+api_keys

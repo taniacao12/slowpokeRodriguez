@@ -4,44 +4,36 @@
 
 {% block content %}
 
-<nav class="navbar fixed-top navbar-dark bg-dark">
-  <a href="#" style="color: white; text-decoration: none;"> Tunes Recipes</a>
-  {% if not logged_in %}
-  <ul class="navbar-nav">
-    <li class="nav-item"><a href="/login"> Login </a></li>
-    <li class="nav-item"><a href="/register"> Register </a></li>
-  </ul>
-  {% else %}
-  <ul class="navbar-nav">
-    <li class="nav-item"><a href="/logout"> Logout </a></li>
-    <li class="nav-item"><a href="/addrecipe"> Add Recipe </a></li>
-
-  </ul>
-  {% endif %}
-</nav>
-
 <br><br><br>
 
 <div class="container-fluid">
-  <h1> HI {{ user }} </h1>
+  {% if not logged_in %}
+  <center><h1> Welcome! </h1></center>
+  {% else %}
+  <center><h1> Welcome, {{ user }}! </h1></center>
+  {% endif %}
 </div>
 
 <br>
 
-<div class="row">
-  {% for recipe in recipes %}
-  <div class="col-sm-4">
-    <div class="card" style="width: 24rem;">
-      <img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][2]}}>
-      <div class="card-body">
-        <h5 class="card-title">{{recipe}}</h5>
-        <p class="card-text">
-          By: {{recipes[recipe][0]}}
-        </p>
-        <a href={{recipes[recipe][1]}} class="btn btn-primary" target="_blank">Read more</a>
+<div class="container-fluid">
+  <center>
+  <div class="row">
+    {% for recipe in recipes %}
+    <div class="col-sm-4">
+      <div class="card" style="width: 24rem;">
+	<img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][2]}}>
+	<div class="card-body">
+          <h5 class="card-title">{{recipe}}</h5>
+          <p class="card-text">
+            By: {{recipes[recipe][0]}}
+          </p>
+          <a href={{recipes[recipe][1]}} class="btn btn-primary" target="_blank">Read more</a>
+	</div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
+  {% endblock %}
+  </center>
 </div>
-{% endblock %}

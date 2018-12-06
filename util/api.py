@@ -40,7 +40,6 @@ def search():
 
 
 def verify_key(key):
-
     try:
         URL = "https://www.food2fork.com/api/search?key=" + key
         response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
