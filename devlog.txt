@@ -103,6 +103,15 @@ taniaC -- 2018-12-03 13:40
 --------------------------------------------------------------
 0. updated devlog (added entries and clarified existing ones)
 ==============================================================
+hasifA -- 2018-12-03 19:45
+--------------------------------------------------------------
+1. fixed several bugs in register page
+==============================================================
+hasifA -- 2018-12-04 19:50
+--------------------------------------------------------------
+1. added function allowing users to add recipes in db
+2. created userfood.html and addrecipe.html and created flask functions to accompany
+==============================================================
 mohtasimH -- 2018-12-05 13:38
 --------------------------------------------------------------
 0. added function that cycles through several apis when an api reaches the limited number of requests per day
@@ -114,9 +123,7 @@ taniaC -- 2018-12-05 13:54
 ==============================================================
 hasifA -- 2018-12-05 19:52
 --------------------------------------------------------------
-0. added user entries function
-1. added function allowing users to add recipes
-2. fixed several bugs in register page
+0. added user entries function 
 ==============================================================
 johnsonL -- 2018-12-05 23:02
 --------------------------------------------------------------

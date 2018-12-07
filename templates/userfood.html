@@ -32,15 +32,22 @@
   {% for recipe in recipes %}
   <div class="col-sm-4">
     <div class="card" style="width: 24rem;">
-<img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][2]}}>
+<img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][4]}}>
 <div class="card-body">
-        <h5 class="card-title">{{recipe}}</h5>
+        <h5 class="card-title">{{recipes[recipe][1]}}</h5>
         <p class="card-text">
           By: {{recipes[recipe][0]}}
+          <br> <br>
+          {{recipes[recipe][2]}}
+          <br> <br>
+          {{recipes[recipe][3]}}
         </p>
-        <a href={{recipes[recipe][1]}} class="btn btn-primary" target="_blank">Read more</a>
+
 </div>
     </div>
   </div>
   {% endfor %}
+  </div>
 {% endblock %}
+</div>
+</div>
