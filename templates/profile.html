@@ -4,8 +4,6 @@
 
 {% block content %}
 
-{{logged_in}}
-
 <br>
 <br>
 <br>
@@ -29,7 +27,7 @@
 <form action="/updatepreferences">
     <div class="container-fluid">
       <div class="form-group">
-        <label for="preference">Preferences</label>
+        <label for="preference">Preferences (minimum of 3)</label>
         <input type="text"  class="form-control" name="preference" placeholder="Preferences">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>

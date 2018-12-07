@@ -36,7 +36,12 @@
     <!-- Replaceable body -->
     {% set msgs = get_flashed_messages() %}
     {% for each in msgs %}
-    <b>{{each}}</b>
+    <br>
+    <br>
+    <hr>
+    <div class="alert alert-primary" role="alert">
+      {{each}}
+    </div>
     {% endfor %}
 
     {% block content %}

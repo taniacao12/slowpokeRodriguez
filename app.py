@@ -13,8 +13,8 @@ app.secret_key = os.urandom(32) #key for session
 @app.route("/")
 def home():
     if "logged_in" in session:
-        return render_template("home.html", user = session["logged_in"], logged_in=True, recipes=api.search("chicken"))
-    return render_template("home.html", logged_in=False, recipes=api.get_recipes("chicken"))
+        return render_template("home.html", user = session["logged_in"], logged_in=True, recipes=api.get_recipes(session["logged_in"]))
+    return render_template("home.html", logged_in=False, recipes=api.get_recipes(""))
 
 @app.route("/register")
 def register():
@@ -86,9 +86,14 @@ def userentries():
 @app.route("/updatepreferences")
 def update_preferences():
     preferences = request.args["preference"].strip()
+    if len(request.args["preference"].split(",")) < 3:
+        flash("Enter 3 or more preferences please")
+        return redirect(url_for("profile"))
+
     if not preferences:
         db.update("none", session['logged_in'])
     else:
+        flash("Preferences updated")
         db.update(preferences, session['logged_in'])
     return redirect(url_for("profile"))
 

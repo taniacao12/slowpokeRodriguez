@@ -8,10 +8,10 @@ curInd = 0 # current index of working api_keys
 
 with open("yummly_key.txt") as file:
     api_keys = file.read()
-    print(api_keys)
+    # print(api_keys)
     api_keys=api_keys.strip("\n")
     api_list = api_keys.split(",")
-    print(api_list)
+    # print(api_list)
 
 keyMain = api_list[0]
 
@@ -28,25 +28,47 @@ def get_recipes(user):
     #     if verify_key(key) == True:
     #         keyMain = key
     #         break
-    recipes_res = search("onion")
 
     recipes = {}
 
-    try:
-        for num in range(3):
-            title = recipes_res[num]["recipeName"]
+    if not user:
+        try:
+            recipes_res = search("")
+            for num in range(9):
+                title = recipes_res[num]["recipeName"]
 
-            recipes[title] = [
-                recipes_res[num]["sourceDisplayName"],
-                "https://www.yummly.com/recipe/" + recipes_res[num]["id"],
-                recipes_res[num]["imageUrlsBySize"]["90"].replace("90", "500")
-            ]
-    except:
-        print("o no")
+                recipes[title] = [
+                    recipes_res[num]["sourceDisplayName"],
+                    "https://www.yummly.com/recipe/" + recipes_res[num]["id"],
+                    recipes_res[num]["imageUrlsBySize"]["90"].replace("90", "500")
+                ]
+        except:
+            print("o no")
 
+        return recipes
+
+    to_search = random.sample(db.get_preference(user), 3)
+    # to_search = ["chicken", "beans", "potato"]
+
+    for thing in to_search:
+        
+    #   print("preference:!!!! " + thing )
+
+        recipes_res = search(thing.strip().replace(" ", ""))
+        try:
+            for num in range(5):
+                rand = random.randint(0,9)
+
+                recipes[recipes_res[rand]["recipeName"]] = [
+                    recipes_res[rand]["sourceDisplayName"],
+                    "https://www.yummly.com/recipe/" + recipes_res[rand]["id"],
+                    recipes_res[rand]["imageUrlsBySize"]["90"].replace("90", "500")
+                ]
+        except:
+            print("o no")
+
+    print(recipes)
     return recipes
-
-
 
 
 def verify_key(key):
@@ -59,9 +81,9 @@ def verify_key(key):
     except:
         return False
 
-def test():
-    keyMain="e6680d203687186f7099c33ccb2d6a61"
-    URL = "https://www.food2fork.com/api/search?key=" + keyMain + "&q=chicken"
-    response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
-    print(response)
+# def test():
+#     keyMain="e6680d203687186f7099c33ccb2d6a61"
+#     URL = "https://www.food2fork.com/api/search?key=" + keyMain + "&q=chicken"
+#     response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
+#     print(response)
 
