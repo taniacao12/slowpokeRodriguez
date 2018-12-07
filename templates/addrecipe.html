@@ -5,9 +5,13 @@
 {% block content %}
 
 <div class="container-fluid">
-  <h2> Add a recipe</h2>
+  <div class="text-center">
+    <h2> Add a recipe </h2>
+  </div>
+</div>
+
+<div class="container-fluid">
   <form action="/dbadd">
-    
     <div class="form-group">
       <label for="title">Recipe name</label>
       <input type="text"  class="form-control" name="title" placeholder="Recipe name">

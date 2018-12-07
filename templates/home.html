@@ -6,24 +6,26 @@
 
 <br>
 
-<div class="container-fluid">
-  {% if not logged_in %}
-  <center><h1> Welcome! </h1></center>
-  {% else %}
-  <center><h1> Welcome, {{ user }}! </h1></center>
-  {% endif %}
+<div class="text-center">
+  <div class="container-fluid">
+    {% if not logged_in %}
+    <h1> Welcome! </h1>
+    {% else %}
+    <h1> Welcome, {{ user }}! </h1>
+    {% endif %}
+  </div>
 </div>
 
 <br>
 
 <div class="container-fluid center-block">
-  <div class="center">
+  <div class="block-center">
     <div class="row">
       {% for recipe in recipes %}
       <div class="col-sm-4" style="padding-top: 10px;">
-	      <div class="card" style="width: 24rem;">
-	      <img class="card-img-top" size="100%" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][2]}}>
-	        <div class="card-body">
+	<div class="card" style="width: 24rem;">
+	  <img class="card-img-top" size="100%" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][2]}}>
+	  <div class="card-body">
             <h5 class="card-title">{{recipe}}</h5>
             <p class="card-text">
               By: {{recipes[recipe][0]}}
@@ -31,8 +33,8 @@
             <form action="viewrecipe">
               <button class="btn btn-primary" type="submit" name="recipe-id" value={{recipes[recipe][4]}}>Read more</button>
             </form>
-	        </div>
-	      </div>
+	  </div>
+	</div>
       </div>
       {% endfor %}
     </div>

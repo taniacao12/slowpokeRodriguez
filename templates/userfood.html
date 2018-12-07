@@ -5,30 +5,32 @@
 {% block content %}
 
 <div class="container-fluid">
-  <h1> User Submitted Recipes </h1>
+  <div class="text-center">
+    <h1> User Submitted Recipes </h1>
+  </div>
 </div>
 
 <br>
 
 <div class="container-fluid">
-<div class="row">
-  {% for recipe in recipes %}
-  <div class="col-sm-4">
-    <div class="card" style="width: 24rem;">
+  <div class="row">
+    {% for recipe in recipes %}
+    <div class="col-md-4">
+      <div class="card" style="width: 24rem;">
         <img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][4]}}>
         <div class="card-body">
-        <h5 class="card-title">{{recipes[recipe][1]}}</h5>
-        <p class="card-text">
-          By: {{recipes[recipe][0]}}
-        </p>
-        <form action="/viewuserrecipe">
+          <h5 class="card-title">{{recipes[recipe][1]}}</h5>
+          <p class="card-text">
+            By: {{recipes[recipe][0]}}
+          </p>
+          <form action="/viewuserrecipe">
             <button class="btn btn-primary" type="submit" name="recipe-id" value="{{recipes[recipe][0]}},{{recipes[recipe][1]}}">Read more</button>
-        </form>
-
+          </form>
         </div>
+      </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-  </div>
-{% endblock %}
 </div>
+</div>
+{% endblock %}

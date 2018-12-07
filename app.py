@@ -146,9 +146,6 @@ def viewuserrecipe():
                                                   image_url=recipe[4],
                                                   music=music.randyoutube())
     
-
-
-
 if __name__ == "__main__":
     app.debug = True
     app.run()

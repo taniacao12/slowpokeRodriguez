@@ -4,61 +4,65 @@
 
 {% block content %}
 
-<div class="container-fluid">
-<h1> {{user}}'s Profile</h1>
+<div class="text-center">
+  <div class="container-fluid">
+    <h1> {{user}}'s Profile</h1>
+  </div>
 </div>
 
-<br><br>
+<br>
 
 <div class="container-fluid">
-    <h3> Food Preferences </h3>
-    {% if not preferences or preferences[0] == "none"%}
-        <span style="color: darkgray"> No preferences. Enter some! </span>
-    {% else %}
-        {% for thing in preferences %}
-            <span class="badge badge-secondary"> {{thing}} </span>
-        {% endfor %}
-    {% endif %}
-
-    <br> 
-    <br>
-    <form action="/updatepreferences">
-        <div class="container-fluid">
-        <div class="form-group">
-            <label for="preference">Preferences (minimum of 3)</label>
-            <input type="text"  class="form-control" name="preference" placeholder="ex: chicken, beans, rice">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form> 
+  <h3> Food Preferences </h3>
+  {% if not preferences or preferences[0] == "none"%}
+  <span style="color: darkgray"> No preferences. Enter some! </span>
+  {% else %}
+  {% for thing in preferences %}
+  <span class="badge badge-secondary"> {{thing}} </span>
+  {% endfor %}
+  {% endif %}
+  <br> 
+  <br>
+  <form action="/updatepreferences">
+    <div class="container-fluid">
+      <div class="form-group">
+        <label for="preference">Preferences (minimum of 3)</label>
+        <input type="text"  class="form-control" name="preference" placeholder="ex: chicken, beans, rice">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form> 
 </div>
 
 <hr>
-<div class="container-fluid">
+
+<div class="text-center">
+  <div class="container-fluid">
     <h3> My Recipes </h3>
     <div class="row">
-    {% for recipe in recipes %}
-        <div class="col-sm-4">
-            <div class="card" style="width: 24rem;">
-                <img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipe[4]}}>
-                <div class="card-body">
-                    <h5 class="card-title">{{recipe[1]}}</h5>
-                    <p class="card-text">
-                    By: {{recipe[0]}}
-                    </p>
+      {% for recipe in recipes %}
+      <div class="col-sm-4">
+        <div class="card" style="width: 24rem;">
+          <img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipe[4]}}>
+          <div class="card-body">
+            <h5 class="card-title">{{recipe[1]}}</h5>
+            <p class="card-text">
+              By: {{recipe[0]}}
+            </p>
             
-                    <form action="/viewuserrecipe">
-                        <button class="btn btn-primary" type="submit" name="recipe-id" value="{{recipe[0]}},{{recipe[1]}}">Read more</button>
-                    </form>
-                    <br>
-                    <form action="/removerecipe">
-                        <button class="btn btn-danger" type="submit" name="recipe-id" value="{{recipe[0]}},{{recipe[1]}}">Delete</button>
-                    </form>
-                </div>
-            </div>
+            <form action="/viewuserrecipe">
+              <button class="btn btn-primary" type="submit" name="recipe-id" value="{{recipe[0]}},{{recipe[1]}}">Read more</button>
+            </form>
+            <br>
+            <form action="/removerecipe">
+              <button class="btn btn-danger" type="submit" name="recipe-id" value="{{recipe[0]}},{{recipe[1]}}">Delete</button>
+            </form>
+          </div>
         </div>
-    {% endfor %}
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </div>
 
 {% endblock %}
