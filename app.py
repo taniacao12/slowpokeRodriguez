@@ -119,7 +119,6 @@ def viewrecipe():
                                               rating=recipe["rating"],
                                               music=music.randyoutube(),
                                               id=recipe["id"])
-                                              rating=recipe["rating"])
 
 @app.route("/removerecipe")
 def removerecipe():
