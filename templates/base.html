@@ -9,16 +9,16 @@
     {% endblock %}
     <style>
       @import url('https://fonts.googleapis.com/css?family=Muli');
-      * {font-family: "Muli";}    
+      * {font-family: "Muli";}
       a.navbar-brand {text-decoration: none;}
-    </style> 
+    </style>
   </head>
-  
+
   <body style="padding-top: 70px">
     {% block header %}
     <div>
-      <nav class="navbar fixed-top navbar-dark bg-dark"> 
-        <a href="/" class="navbar-brand" style="color: white; text-decoration: none;"> Tunes Recipes </a>
+      <nav class="navbar fixed-top navbar-dark bg-dark">
+        <a href="/" class="navbar-brand" style="color: white; text-decoration: none;"> Tuned Recipes </a>
         {% if not logged_in %}
         <ul class="navbar-nav">
           <li class="nav-item"><a href="/login"> Login </a></li>
@@ -28,14 +28,14 @@
         <a href="/profile"> Profile </a>
         <a href="/userentries"> User Recipes </a>
         <ul class="navbar-nav">
-          <li class="nav-item"><a href="/addrecipe"> Add Recipe </a></li>	
+          <li class="nav-item"><a href="/addrecipe"> Add Recipe </a></li>
           <li class="nav-item"><a href="/logout"> Logout </a></li>
         </ul>
         {% endif %}
       </nav>
     </div>
     {% endblock %}
-    
+
     <!-- Replaceable body -->
     {% set msgs = get_flashed_messages() %}
     {% for each in msgs %}
