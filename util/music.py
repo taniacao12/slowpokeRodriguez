@@ -26,9 +26,10 @@ def randtoptrack():
 
 def randyoutube():
     randTrack = randtoptrack()
+    print("randTrack: " + randTrack)
     randtrackl=randTrack.split()
     finalrand = ""
-    for i in range(len(randtrackl)-1):
+    for i in range(len(randtrackl)):
         finalrand += randtrackl[i] + "%20"
     print (finalrand)
 
@@ -41,4 +42,4 @@ def randyoutube():
 
 
 # print(randtoptrack())
-# print(randyoutube())
+print(randyoutube())
