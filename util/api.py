@@ -23,12 +23,7 @@ def search(query):
 
 def get_recipes(user):
     keyMain = api_list[0] #key to be used
-    #need to add try except here
-    # for key in api_list:
-    #     if verify_key(key) == True:
-    #         keyMain = key
-    #         break
-
+    
     recipes = {}
 
     if not user:
@@ -40,7 +35,9 @@ def get_recipes(user):
                 recipes[title] = [
                     recipes_res[num]["sourceDisplayName"],
                     "https://www.yummly.com/recipe/" + recipes_res[num]["id"],
-                    recipes_res[num]["imageUrlsBySize"]["90"].replace("90", "500")
+                    recipes_res[num]["imageUrlsBySize"]["90"].replace("90", "500"),
+                    recipes_res[num]["ingredients"],
+                    recipes_res[num]["id"]
                 ]
         except:
             print("o no")
@@ -62,7 +59,8 @@ def get_recipes(user):
                 recipes[recipes_res[rand]["recipeName"]] = [
                     recipes_res[rand]["sourceDisplayName"],
                     "https://www.yummly.com/recipe/" + recipes_res[rand]["id"],
-                    recipes_res[rand]["imageUrlsBySize"]["90"].replace("90", "500")
+                    recipes_res[rand]["imageUrlsBySize"]["90"].replace("90", "500"),
+
                 ]
         except:
             print("o no")
@@ -70,6 +68,22 @@ def get_recipes(user):
     print(recipes)
     return recipes
 
+def find_recipe(recipe_id):
+    URL = "http://api.yummly.com/v1/api/recipe/{}?_app_id=bd0cd97c&_app_key={}".format(recipe_id, keyMain)
+    response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
+    info = json.loads(response)
+    recipe_res = info
+    
+    recipe_info = {
+        "name": recipe_res["name"],
+        "image_url": recipe_res["images"][0]["hostedLargeUrl"].replace("360", "500"),
+        "source_url": recipe_res["source"]["sourceRecipeUrl"],
+        "ingredients": recipe_res["ingredientLines"],
+        "servings": recipe_res["numberOfServings"],
+        "rating": recipe_res["rating"]
+    }
+
+    return recipe_info
 
 def verify_key(key):
     try:
@@ -81,9 +95,5 @@ def verify_key(key):
     except:
         return False
 
-# def test():
-#     keyMain="e6680d203687186f7099c33ccb2d6a61"
-#     URL = "https://www.food2fork.com/api/search?key=" + keyMain + "&q=chicken"
-#     response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
-#     print(response)
 
+print(find_recipe("Curried-Tomato-Tortellini-Soup-2604059"))

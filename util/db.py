@@ -49,7 +49,7 @@ def auth_user(username, password):
     db.close()
     return False
 
-def add_recipe(username,name,ingred, instruct, pics):
+def add_recipe(username, name, ingred, instruct, pics):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
@@ -96,5 +96,16 @@ def update(preferences, username):
     db.commit()
     db.close()
 
+# def printstuff():
+#     db = sqlite3.connect(DB_FILE)
+#     c = db.cursor()
+
+#     for i in c.execute("select ingredients from recipes where user='admin'"):
+#         hi = i[0].split("\r\n")
+#         print(hi)
+
+#     db.close()
+
+# printstuff()
 # get_preference("admin")
-create_tables()
+# create_tables()

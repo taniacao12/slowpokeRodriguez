@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} {{name}} {% endblock %}
+
+{% block content %}
+
+<h2> {{name}} </h2>
+<hr>
+
+    <div class="clearfix">
+            <img src={{image_url}} class="float-left">
+            <p>This text appears next to the image.</p>
+    </div>
+
+{% endblock %}

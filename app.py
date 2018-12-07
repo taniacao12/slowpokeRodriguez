@@ -73,8 +73,16 @@ def addrecipe():
     return render_template("addrecipe.html")
 
 @app.route("/dbadd")
-def added():
-    db.add_recipe(session["logged_in"], request.args["title"],request.args["ingredients"],request.args["instructions"],request.args["link"])
+def dbadd():
+    user = session["logged_in"].strip()
+    recipe_name = request.args["title"].strip()
+    ingredients = request.args["ingredients"].strip()
+    instructions = request.args["instructions"].strip()
+    image = request.args["link"]
+    if not user or not recipe_name or not ingredients or not instructions:
+        flash("Please fill in all fields")
+        return redirect(url_for("addrecipe"))
+    db.add_recipe(user, recipe_name, ingredients, instructions, image)
     return redirect(url_for("userentries"))
 
 @app.route("/userentries")
@@ -96,6 +104,22 @@ def update_preferences():
         flash("Preferences updated")
         db.update(preferences, session['logged_in'])
     return redirect(url_for("profile"))
+
+@app.route("/viewrecipe")
+def viewrecipe():
+    recipe_id = request.args["recipe-id"]
+    recipe = api.find_recipe(recipe_id)
+    print("ROUTE STUFFF")
+    print(recipe)
+
+    return render_template("viewrecipe.html", name=recipe["name"],
+                                              image_url=recipe["image_url"],
+                                              source_url=recipe["source_url"],
+                                              ingredients=recipe["ingredients"],
+                                              servings=recipe["servings"],
+                                              rating=recipe["rating"])
+    
+
 
 if __name__ == "__main__":
     app.debug = True
