@@ -6,14 +6,9 @@
 
 <div class="container-fluid">
     <h2> {{name}} </h2>
-</div>
-<hr>
-<div class="container-fluid">
+    <hr>
     <div class="clearfix">
-        <figure class="figure">
-            <img src="{{image_url}}">
-            <figcaption class="figure-caption">Rating {{rating}} / 5</figcaption>
-        </figure>
+        <img src="{{image_url}}" class="float-left pull-left mr-4">
         <h4>Ingredients</h4>
         <ul class="list-group">
             {% for ingredient in ingredients %}
@@ -21,7 +16,31 @@
             {% endfor %}
         </ul>
     </div>
-    <p> Rating: {{rating}} / 5</p>
+    <div style="float:right">
+            <a class="btn btn-primary btn-lg" href="{{source_url}}" style="margin-top: 1em;" target="_blank"> Directions </a>
+        </div>
+    <div>
+        <span style="font-size: 30px"> Serves: {{servings}} </span>
+        <br>
+        <span style="font-size: 35px"> Rating: {{rating}} / 5</span>
+    </div>
+    
+</div>
+
+<br>
+<br>
+
+<div class="container-fluid">
+    <h2> Music </h2>
+    <hr>
+    <div>
+        <div class="embed-responsive embed-responsive-16by9 col-sm-3 pull-left mr-4"">
+                <iframe class="embed-responsive-item" src="{{music}}"></iframe>
+        </div>
+        <br>
+        <a  class="btn btn-primary" href="http://localhost:5000/viewrecipe?recipe-id={{id}}"> Next </a>
+    </div>
+
 </div>
 
 {% endblock %}

@@ -1,10 +1,16 @@
 import json, random
 from urllib.request import Request, urlopen
 
+fm_key = ""
+you_key = ""
 
-fm_key= "64106f2b76682a44579d3f30f29c2ca5"
+with open("lastFM_keys.txt") as file:
+    api_keys = file.read()
+    fm_key = api_keys.strip("\n")
 
-you_key="AIzaSyB54bR0_J9yC_IpWsbqM-faMRdSgM6GpoA"
+with open("youtube_keys.txt") as file:
+    api_keys = file.read()
+    you_key = api_keys.strip("\n")
 
 def toptracks():
     URL="http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks&api_key=" + fm_key + "&format=json"
@@ -34,5 +40,5 @@ def randyoutube():
 
 
 
-print(randtoptrack())
-print(randyoutube())
+# print(randtoptrack())
+# print(randyoutube())

@@ -3,8 +3,7 @@ from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request,session,url_for,redirect,flash
 
-from util import db
-from util import api
+from util import db, api, music
 
 app = Flask(__name__)
 
@@ -117,7 +116,9 @@ def viewrecipe():
                                               source_url=recipe["source_url"],
                                               ingredients=recipe["ingredients"],
                                               servings=recipe["servings"],
-                                              rating=recipe["rating"])
+                                              rating=recipe["rating"],
+                                              music=music.randyoutube(),
+                                              id=recipe["id"])
     
 
 

@@ -62,8 +62,8 @@ def get_recipes(user):
                     recipes_res[rand]["sourceDisplayName"],
                     "https://www.yummly.com/recipe/" + recipes_res[rand]["id"],
                     recipes_res[rand]["imageUrlsBySize"]["90"].replace("90", "500"),
-                    recipes_res[num]["ingredients"],
-                    recipes_res[num]["id"]
+                    recipes_res[rand]["ingredients"],
+                    recipes_res[rand]["id"]
 
                 ]
         except:
@@ -84,7 +84,8 @@ def find_recipe(recipe_id):
         "source_url": recipe_res["source"]["sourceRecipeUrl"],
         "ingredients": recipe_res["ingredientLines"],
         "servings": recipe_res["numberOfServings"],
-        "rating": recipe_res["rating"]
+        "rating": recipe_res["rating"],
+        "id": recipe_res["id"]
     }
 
     return recipe_info
@@ -100,4 +101,4 @@ def verify_key(key):
         return False
 
 
-print(find_recipe("Curried-Tomato-Tortellini-Soup-2604059"))
+# print(find_recipe("Curried-Tomato-Tortellini-Soup-2604059"))
