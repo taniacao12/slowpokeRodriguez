@@ -23,7 +23,7 @@ def search(query):
 
 def get_recipes(user):
     keyMain = api_list[0] #key to be used
-    
+
     recipes = {}
 
     if not user:
@@ -44,8 +44,10 @@ def get_recipes(user):
 
         return recipes
 
-    to_search = random.sample(db.get_preference(user), 3)
-    # to_search = ["chicken", "beans", "potato"]
+    try:
+        to_search = random.sample(db.get_preference(user), 3)
+    except:
+        to_search = [""]
 
     for thing in to_search:
         
@@ -60,6 +62,8 @@ def get_recipes(user):
                     recipes_res[rand]["sourceDisplayName"],
                     "https://www.yummly.com/recipe/" + recipes_res[rand]["id"],
                     recipes_res[rand]["imageUrlsBySize"]["90"].replace("90", "500"),
+                    recipes_res[num]["ingredients"],
+                    recipes_res[num]["id"]
 
                 ]
         except:

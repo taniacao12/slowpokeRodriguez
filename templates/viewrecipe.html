@@ -4,12 +4,24 @@
 
 {% block content %}
 
-<h2> {{name}} </h2>
+<div class="container-fluid">
+    <h2> {{name}} </h2>
+</div>
 <hr>
-
+<div class="container-fluid">
     <div class="clearfix">
-            <img src={{image_url}} class="float-left">
-            <p>This text appears next to the image.</p>
+        <figure class="figure">
+            <img src="{{image_url}}">
+            <figcaption class="figure-caption">Rating {{rating}} / 5</figcaption>
+        </figure>
+        <h4>Ingredients</h4>
+        <ul class="list-group">
+            {% for ingredient in ingredients %}
+                <li class="list-group-item"> {{ingredient}} </li>
+            {% endfor %}
+        </ul>
     </div>
+    <p> Rating: {{rating}} / 5</p>
+</div>
 
 {% endblock %}
