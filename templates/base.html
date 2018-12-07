@@ -9,11 +9,11 @@
     {% endblock %}
     <style>
       @import url('https://fonts.googleapis.com/css?family=Muli');
-      * {font-family: "Muli";}    
+      * {font-family: "Muli";}
       a.navbar-brand {text-decoration: none;}
-    </style> 
+    </style>
   </head>
-  
+
   <body style="padding-top: 70px">
     {% block header %}
     <div>
@@ -35,7 +35,7 @@
       </nav>
     </div>
     {% endblock %}
-    
+
     <!-- Replaceable body -->
     {% set msgs = get_flashed_messages() %}
     {% for each in msgs %}
