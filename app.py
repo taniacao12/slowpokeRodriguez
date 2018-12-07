@@ -55,7 +55,7 @@ def logout():
 def profile():
     preferences = db.get_preference(session["logged_in"])
     # print("app route preferencesd!!!!!: : : : ::")
-    print(preferences)
+    #print(preferences)
     return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True)
 
 @app.route("/auth")
@@ -108,8 +108,8 @@ def update_preferences():
 def viewrecipe():
     recipe_id = request.args["recipe-id"]
     recipe = api.find_recipe(recipe_id)
-    print("ROUTE STUFFF")
-    print(recipe)
+    #print("ROUTE STUFFF")
+    #print(recipe)
 
     return render_template("viewrecipe.html", name=recipe["name"],
                                               image_url=recipe["image_url"],
