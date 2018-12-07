@@ -96,6 +96,15 @@ def update(preferences, username):
     db.commit()
     db.close()
 
+def remove_recipe(recipe_name):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("DELETE FROM recipes WHERE title = ?",recipe_name)
+
+    db.commit()
+    db.close()
+
+
 # def printstuff():
 #     db = sqlite3.connect(DB_FILE)
 #     c = db.cursor()

@@ -118,7 +118,12 @@ def viewrecipe():
                                               ingredients=recipe["ingredients"],
                                               servings=recipe["servings"],
                                               rating=recipe["rating"])
-    
+
+@app.route("/removerecipe")
+def removerecipe():
+    recipe_name = request.args["removing"]
+    db.remove_recipe(recipe_name)
+    return redirect(url_for("userentries"))
 
 
 if __name__ == "__main__":
