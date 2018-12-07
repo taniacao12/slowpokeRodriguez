@@ -30,8 +30,8 @@ def randyoutube():
     print(URL)
     response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
     info = json.loads(response)
-    yourl="https://www.youtube.com/watch?v="
-    return "https://www.youtube.com/watch?v=" + info["items"][0]["id"]["videoId"]
+    return "https://www.youtube.com/embed/" + info["items"][0]["id"]["videoId"] + "?ecver=1"
+
 
 
 print(randtoptrack())
