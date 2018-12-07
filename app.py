@@ -3,8 +3,7 @@ from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request,session,url_for,redirect,flash
 
-from util import db
-from util import api
+from util import db, api, music
 
 app = Flask(__name__)
 
@@ -117,6 +116,7 @@ def viewrecipe():
                                               source_url=recipe["source_url"],
                                               ingredients=recipe["ingredients"],
                                               servings=recipe["servings"],
+<<<<<<< HEAD
                                               rating=recipe["rating"])
 
 @app.route("/removerecipe")
@@ -124,6 +124,12 @@ def removerecipe():
     recipe_name = request.args["removing"]
     db.remove_recipe(recipe_name)
     return redirect(url_for("userentries"))
+=======
+                                              rating=recipe["rating"],
+                                              music=music.randyoutube(),
+                                              id=recipe["id"])
+    
+>>>>>>> a7358ffe11d6929d4ad95c832b6b77e24c3e90f3
 
 
 if __name__ == "__main__":
