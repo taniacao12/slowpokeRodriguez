@@ -69,7 +69,7 @@ def get_recipes(user):
         except:
             print("o no")
 
-    print(recipes)
+    # print(recipes)
     return recipes
 
 def find_recipe(recipe_id):

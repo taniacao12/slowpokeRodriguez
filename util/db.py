@@ -73,8 +73,23 @@ def user_recipes():
         ]
         i += 1
     db.close()
-    print(recipes)
+    # print(recipes)
     return recipes
+
+def get_recipe_info(user, title):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    recipe = []
+    for i in c.execute("select * from recipes where user={} and title={}".format("'" + user + "'", "'" + title + "'")):
+        recipe.append(i[0])
+        recipe.append(i[1])
+        recipe.append(i[2])
+        recipe.append(i[3])
+        recipe.append(i[4])
+
+    return recipe
+    db.close()
 
 def get_preference(username):
     db = sqlite3.connect(DB_FILE)
@@ -96,10 +111,22 @@ def update(preferences, username):
     db.commit()
     db.close()
 
-def remove_recipe(recipe_name):
+def check_recipe(user, recipe_name):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("DELETE FROM recipes WHERE title = ?",recipe_name)
+
+    for entry in c.execute("SELECT user, title FROM recipes"):
+        if(entry[0] == user and entry[1] == recipe_name):
+            db.close()
+            return True
+
+    db.close()
+    return False
+
+def remove_recipe(user, recipe_name):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("DELETE FROM recipes WHERE user={} AND title={}".format("'" + user + "'", "'" + recipe_name + "'"))
 
     db.commit()
     db.close()

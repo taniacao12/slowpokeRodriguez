@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} {{name}} {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <h2> {{name}} </h2>
+    <h3> By: {{user}} </h3>
+    <hr>
+    <div class="clearfix">
+        <img  width="500" src="{{image_url}}" class="float-left pull-left mr-4">
+        <h4>Ingredients</h4>
+        <ul class="list-group">
+            {% for ingredient in ingredients %}
+                <li class="list-group-item"> {{ingredient}} </li>
+            {% endfor %}
+        </ul>
+        <hr>
+        <h4>Directions</h4>
+        <ul class="list-group">
+                {% for direction in directions %}
+                    <li class="list-group-item"> {{direction}} </li>
+                {% endfor %}
+            </ul>
+    </div>
+    
+</div>
+
+<br>
+<br>
+
+<div class="container-fluid">
+    <h2> Music </h2>
+    <hr>
+    <div>
+        <div class="embed-responsive embed-responsive-16by9 col-sm-3 pull-left mr-4"">
+            <iframe class="embed-responsive-item" src="{{music}}"></iframe>
+        </div>
+        <br>
+        <a  class="btn btn-primary" href="http://localhost:5000/viewuserrecipe?recipe-id={{user}}%2C{{name}}"> Next </a>
+    </div>
+
+</div>
+
+{% endblock %}
