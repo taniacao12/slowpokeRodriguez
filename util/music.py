@@ -14,7 +14,7 @@ with open("youtube_keys.txt") as file:
 
 def toptracks():
     URL="http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks&api_key=" + fm_key + "&format=json"
-    print(URL)
+    #print(URL)
     response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
     info = json.loads(response)
     return info["tracks"]["track"]
@@ -26,15 +26,15 @@ def randtoptrack():
 
 def randyoutube():
     randTrack = randtoptrack()
-    print("randTrack: " + randTrack)
+    #print("randTrack: " + randTrack)
     randtrackl=randTrack.split()
     finalrand = ""
     for i in range(len(randtrackl)):
         finalrand += randtrackl[i] + "%20"
-    print (finalrand)
+    #print (finalrand)
 
     URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=" + finalrand + "&key=" + you_key
-    print(URL)
+    #print(URL)
     response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
     info = json.loads(response)
     return "https://www.youtube.com/embed/" + info["items"][0]["id"]["videoId"] + "?ecver=1"
@@ -42,4 +42,4 @@ def randyoutube():
 
 
 # print(randtoptrack())
-print(randyoutube())
+#print(randyoutube())
