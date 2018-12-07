@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32) #key for session
 def home():
     if "logged_in" in session:
         return render_template("home.html", user = session["logged_in"], logged_in=True, recipes=api.search("chicken"))
-    return render_template("home.html", logged_in=False, recipes=api.search("chicken"))
+    return render_template("home.html", logged_in=False, recipes=api.get_recipes("chicken"))
 
 @app.route("/register")
 def register():
@@ -55,7 +55,7 @@ def logout():
 @app.route("/profile")
 def profile():
     preferences = db.get_preference(session["logged_in"])
-    print("app route preferencesd!!!!!: : : : ::")
+    # print("app route preferencesd!!!!!: : : : ::")
     print(preferences)
     return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True)
 
@@ -85,8 +85,11 @@ def userentries():
 
 @app.route("/updatepreferences")
 def update_preferences():
-    preferences = request.args["preference"]
-    db.update(preferences, session['logged_in'])
+    preferences = request.args["preference"].strip()
+    if not preferences:
+        db.update("none", session['logged_in'])
+    else:
+        db.update(preferences, session['logged_in'])
     return redirect(url_for("profile"))
 
 if __name__ == "__main__":

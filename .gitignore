@@ -127,6 +127,6 @@ ehthumbs.db
 .mypy_cache/
 
 api_keys.txt
-food2fork_keys.txt
+yummly_key.txt
 lastFM_keys.txt
 youtube_keys.txt

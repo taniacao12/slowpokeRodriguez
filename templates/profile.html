@@ -16,7 +16,7 @@
 <br>
 
 <h3> Preferences </h3>
-{% if not preferences %}
+{% if not preferences or preferences[0] == "none"%}
     <span style="color: darkgray"> No preferences. Enter some! </span>
 {% else %}
     {% for thing in preferences %}
