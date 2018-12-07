@@ -28,12 +28,13 @@
 
 <br>
 
+<div class="container-fluid">
 <div class="row">
   {% for recipe in recipes %}
   <div class="col-sm-4">
     <div class="card" style="width: 24rem;">
-<img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][4]}}>
-<div class="card-body">
+        <img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][4]}}>
+        <div class="card-body">
         <h5 class="card-title">{{recipes[recipe][1]}}</h5>
         <p class="card-text">
           By: {{recipes[recipe][0]}}
@@ -43,11 +44,10 @@
           {{recipes[recipe][3]}}
         </p>
 
-</div>
+        </div>
     </div>
   </div>
   {% endfor %}
   </div>
 {% endblock %}
-</div>
 </div>
