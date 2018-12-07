@@ -50,7 +50,7 @@ def get_recipes(user):
         to_search = [""]
 
     for thing in to_search:
-        
+
     #   print("preference:!!!! " + thing )
 
         recipes_res = search(thing.strip().replace(" ", ""))
@@ -69,7 +69,7 @@ def get_recipes(user):
         except:
             print("o no")
 
-    # print(recipes)
+    #print(recipes)
     return recipes
 
 def find_recipe(recipe_id):
@@ -77,7 +77,7 @@ def find_recipe(recipe_id):
     response = urlopen(Request(URL, headers={'User-Agent': 'Mozilla/5.0'})).read()
     info = json.loads(response)
     recipe_res = info
-    
+
     recipe_info = {
         "name": recipe_res["name"],
         "image_url": recipe_res["images"][0]["hostedLargeUrl"].replace("360", "500"),

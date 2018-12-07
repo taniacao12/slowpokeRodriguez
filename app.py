@@ -54,8 +54,12 @@ def logout():
 @app.route("/profile")
 def profile():
     preferences = db.get_preference(session["logged_in"])
+
+#     # print("app route preferencesd!!!!!: : : : ::")
+#     #print(preferences)
     recipes = db.get_user_recipes(session["logged_in"])
     return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True, recipes=recipes)
+
 
 @app.route("/auth")
 def auth():
@@ -110,6 +114,8 @@ def update_preferences():
 def viewrecipe():
     recipe_id = request.args["recipe-id"]
     recipe = api.find_recipe(recipe_id)
+    #print("ROUTE STUFFF")
+    #print(recipe)
 
     return render_template("viewrecipe.html", name=recipe["name"],
                                               image_url=recipe["image_url"],
@@ -139,13 +145,20 @@ def viewuserrecipe():
     recipe = db.get_recipe_info(user, title);
     print (recipe)
 
-    return render_template("viewuserrecipe.html", user=user, 
-                                                  name=title, 
-                                                  ingredients=recipe[2].split("\r\n"), 
-                                                  directions=recipe[3].split("\r\n"), 
+    return render_template("viewuserrecipe.html", user=user,
+                                                  name=title,
+                                                  ingredients=recipe[2].split("\r\n"),
+                                                  directions=recipe[3].split("\r\n"),
                                                   image_url=recipe[4],
                                                   music=music.randyoutube())
+<<<<<<< HEAD
     
+=======
+
+
+
+
+>>>>>>> 7768b6947dcf5ddd7a41af70e6b468dc9bdee90d
 if __name__ == "__main__":
     app.debug = True
     app.run()
