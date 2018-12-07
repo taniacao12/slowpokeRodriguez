@@ -54,12 +54,10 @@ def logout():
 @app.route("/profile")
 def profile():
     preferences = db.get_preference(session["logged_in"])
-
-#     # print("app route preferencesd!!!!!: : : : ::")
-#     #print(preferences)
+    #     # print("app route preferencesd!!!!!: : : : ::")
+    #     #print(preferences)
     recipes = db.get_user_recipes(session["logged_in"])
     return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True, recipes=recipes)
-
 
 @app.route("/auth")
 def auth():
@@ -102,7 +100,6 @@ def update_preferences():
     if len(request.args["preference"].split(",")) < 3:
         flash("Enter 3 or more preferences please")
         return redirect(url_for("profile"))
-
     if not preferences:
         db.update("none", session['logged_in'])
     else:
@@ -116,22 +113,20 @@ def viewrecipe():
     recipe = api.find_recipe(recipe_id)
     #print("ROUTE STUFFF")
     #print(recipe)
-
     return render_template("viewrecipe.html", name=recipe["name"],
-                                              image_url=recipe["image_url"],
-                                              source_url=recipe["source_url"],
-                                              ingredients=recipe["ingredients"],
-                                              servings=recipe["servings"],
-                                              rating=recipe["rating"],
-                                              music=music.randyoutube(),
-                                              id=recipe["id"])
+                           image_url=recipe["image_url"],
+                           source_url=recipe["source_url"],
+                           ingredients=recipe["ingredients"],
+                           servings=recipe["servings"],
+                           rating=recipe["rating"],
+                           music=music.randyoutube(),
+                           id=recipe["id"])
 
 @app.route("/removerecipe")
 def removerecipe():
     res = request.args["recipe-id"].split(",")
     user = res[0]
     title = res[1]
-
     db.remove_recipe(user, title)
     flash("Recipe removed")
     return redirect(url_for("profile"))
@@ -141,24 +136,15 @@ def viewuserrecipe():
     res = request.args["recipe-id"].split(",")
     user = res[0]
     title = res[1]
-
     recipe = db.get_recipe_info(user, title);
     print (recipe)
-
     return render_template("viewuserrecipe.html", user=user,
-                                                  name=title,
-                                                  ingredients=recipe[2].split("\r\n"),
-                                                  directions=recipe[3].split("\r\n"),
-                                                  image_url=recipe[4],
-                                                  music=music.randyoutube())
-<<<<<<< HEAD
-    
-=======
+                           name=title,
+                           ingredients=recipe[2].split("\r\n"),
+                           directions=recipe[3].split("\r\n"),
+                           image_url=recipe[4],
+                           music=music.randyoutube())
 
-
-
-
->>>>>>> 7768b6947dcf5ddd7a41af70e6b468dc9bdee90d
 if __name__ == "__main__":
     app.debug = True
     app.run()
