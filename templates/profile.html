@@ -4,15 +4,15 @@
 
 {% block content %}
 
-<br>
-<br>
-<br>
+<br><br><br>
 
+<div class="container-fluid">
 <h1> {{user}}'s Profile</h1>
+</div>
 
-<br>
-<br>
+<br><br>
 
+<div class="container-fluid">
 <h3> Preferences </h3>
 {% if not preferences or preferences[0] == "none"%}
     <span style="color: darkgray"> No preferences. Enter some! </span>
@@ -33,6 +33,6 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form> 
-
+</div>
 
 {% endblock %}
