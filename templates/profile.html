@@ -4,8 +4,6 @@
 
 {% block content %}
 
-<br><br><br>
-
 <div class="container-fluid">
 <h1> {{user}}'s Profile</h1>
 </div>
@@ -13,26 +11,32 @@
 <br><br>
 
 <div class="container-fluid">
-<h3> Preferences </h3>
-{% if not preferences or preferences[0] == "none"%}
-    <span style="color: darkgray"> No preferences. Enter some! </span>
-{% else %}
-    {% for thing in preferences %}
-        <span class="badge badge-secondary"> {{thing}} </span>
-    {% endfor %}
-{% endif %}
+    <h3> Food Preferences </h3>
+    {% if not preferences or preferences[0] == "none"%}
+        <span style="color: darkgray"> No preferences. Enter some! </span>
+    {% else %}
+        {% for thing in preferences %}
+            <span class="badge badge-secondary"> {{thing}} </span>
+        {% endfor %}
+    {% endif %}
 
-<br> 
-<br>
-<form action="/updatepreferences">
-    <div class="container-fluid">
-      <div class="form-group">
-        <label for="preference">Preferences (minimum of 3)</label>
-        <input type="text"  class="form-control" name="preference" placeholder="Preferences">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</form> 
+    <br> 
+    <br>
+    <form action="/updatepreferences">
+        <div class="container-fluid">
+        <div class="form-group">
+            <label for="preference">Preferences (minimum of 3)</label>
+            <input type="text"  class="form-control" name="preference" placeholder="ex: chicken, beans, rice">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form> 
+</div>
+
+<hr>
+<div class="container-fluid">
+    <h3> My Recipes </h3>
+
 </div>
 
 {% endblock %}

@@ -4,8 +4,6 @@
 
 {% block content %}
 
-<br><br><br><br>
-
 <div class="container-fluid">
   {% if not logged_in %}
   <center><h1> Welcome! </h1></center>
@@ -20,17 +18,19 @@
   <div class="center">
     <div class="row">
       {% for recipe in recipes %}
-      <div class="col-sm-4">
-	<div class="card" style="width: 24rem;">
-	  <img class="card-img-top" size="100%" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][2]}}>
-	  <div class="card-body">
+      <div class="col-sm-4" style="padding-top: 10px;">
+	      <div class="card" style="width: 24rem;">
+	      <img class="card-img-top" size="100%" style="width:100%;object-fit:cover;height:15vw" src={{recipes[recipe][2]}}>
+	        <div class="card-body">
             <h5 class="card-title">{{recipe}}</h5>
             <p class="card-text">
               By: {{recipes[recipe][0]}}
             </p>
-            <a href={{recipes[recipe][1]}} class="btn btn-primary" target="_blank">Read more</a>
-	  </div>
-	</div>
+            <form action="viewrecipe">
+              <button class="btn btn-primary" type="submit" name="recipe-id" value={{recipes[recipe][4]}}>Read more</button>
+            </form>
+	        </div>
+	      </div>
       </div>
       {% endfor %}
     </div>

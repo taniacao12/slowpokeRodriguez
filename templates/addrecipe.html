@@ -2,28 +2,30 @@
 
 {% block title %} Register {% endblock %}
 
-{% block header %}
-{% endblock %}
 {% block content %}
-<form action="/dbadd">
-  
-  <div class="form-group">
-    <label for="name">Title</label>
-    <input type="text"  class="form-control" name="title" placeholder="Title">
-  </div>
-  <div class="form-group">
-    <label for="ingred">Ingredients</label>
-    <input type="text"  class="form-control" name="ingredients" placeholder="Ingredients">
-  </div>
-  <div class="form-group">
-    <label for="instruct">Instructions</label>
-    <input type="text"  class="form-control" name="instructions" placeholder="Instructions">
-  </div>
-  <div class="form-group">
-    <label for="pics">Image Link!</label>
-    <input type="text"  class="form-control" name="link" placeholder="Image Link!">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-  <a href="/" type="submit" class="btn btn-secondary">back </a>
-</form>
+
+<div class="container-fluid">
+  <h2> Add a recipe</h2>
+  <form action="/dbadd">
+    
+    <div class="form-group">
+      <label for="title">Recipe name</label>
+      <input type="text"  class="form-control" name="title" placeholder="Recipe name">
+    </div>
+    <div class="form-group">
+      <label for="ingredients">Ingredients</label>
+      <textarea type="text" rows="5" class="form-control" name="ingredients" placeholder="Ingredients"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="instructions">Instructions</label>
+      <textarea type="text" rows="5" class="form-control" name="instructions" placeholder="Instructions"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="link">Image Link</label>
+      <input type="text"  class="form-control" name="link" placeholder="Image Link">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/" type="submit" class="btn btn-secondary">back </a>
+  </form>
+</div>
 {% endblock %}

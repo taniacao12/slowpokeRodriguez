@@ -3,8 +3,7 @@ from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request,session,url_for,redirect,flash
 
-from util import db
-from util import api
+from util import db, api, music
 
 app = Flask(__name__)
 
@@ -56,7 +55,7 @@ def logout():
 def profile():
     preferences = db.get_preference(session["logged_in"])
     # print("app route preferencesd!!!!!: : : : ::")
-    print(preferences)
+    # print(preferences)
     return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True)
 
 @app.route("/auth")
@@ -73,8 +72,19 @@ def addrecipe():
     return render_template("addrecipe.html")
 
 @app.route("/dbadd")
-def added():
-    db.add_recipe(session["logged_in"], request.args["title"],request.args["ingredients"],request.args["instructions"],request.args["link"])
+def dbadd():
+    user = session["logged_in"].strip()
+    recipe_name = request.args["title"].strip()
+    ingredients = request.args["ingredients"].strip()
+    instructions = request.args["instructions"].strip()
+    image = request.args["link"]
+    if not user or not recipe_name or not ingredients or not instructions:
+        flash("Please fill in all fields")
+        return redirect(url_for("addrecipe"))
+    if db.check_recipe(user, recipe_name):
+        flash("You already have a recipe with that name")
+        return redirect(url_for("addrecipe"))
+    db.add_recipe(user, recipe_name, ingredients, instructions, image)
     return redirect(url_for("userentries"))
 
 @app.route("/userentries")
@@ -96,6 +106,47 @@ def update_preferences():
         flash("Preferences updated")
         db.update(preferences, session['logged_in'])
     return redirect(url_for("profile"))
+
+@app.route("/viewrecipe")
+def viewrecipe():
+    recipe_id = request.args["recipe-id"]
+    recipe = api.find_recipe(recipe_id)
+
+    return render_template("viewrecipe.html", name=recipe["name"],
+                                              image_url=recipe["image_url"],
+                                              source_url=recipe["source_url"],
+                                              ingredients=recipe["ingredients"],
+                                              servings=recipe["servings"],
+                                              rating=recipe["rating"],
+                                              music=music.randyoutube(),
+                                              id=recipe["id"])
+
+@app.route("/removerecipe")
+def removerecipe():
+    recipe_name = request.args["removing"]
+    db.remove_recipe(recipe_name, session["logged_in"])
+    return redirect(url_for("userentries"))
+
+@app.route("/viewuserrecipe")
+def viewuserrecipe():
+    res = request.args["recipe-id"].split(",")
+    print("!@!$#@$$#@%#$")
+    print(res)
+    user = res[0]
+    title = res[1]
+
+    recipe = db.get_recipe_info(user, title);
+    print (recipe)
+
+    return render_template("viewuserrecipe.html", user=user, 
+                                                  name=title, 
+                                                  ingredients=recipe[2].split("\r\n"), 
+                                                  directions=recipe[3].split("\r\n"), 
+                                                  image_url=recipe[4],
+                                                  music=music.randyoutube())
+    
+
+
 
 if __name__ == "__main__":
     app.debug = True
