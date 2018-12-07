@@ -54,9 +54,8 @@ def logout():
 @app.route("/profile")
 def profile():
     preferences = db.get_preference(session["logged_in"])
-    # print("app route preferencesd!!!!!: : : : ::")
-    # print(preferences)
-    return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True)
+    recipes = db.get_user_recipes(session["logged_in"])
+    return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True, recipes=recipes)
 
 @app.route("/auth")
 def auth():
@@ -123,15 +122,17 @@ def viewrecipe():
 
 @app.route("/removerecipe")
 def removerecipe():
-    recipe_name = request.args["removing"]
-    db.remove_recipe(recipe_name, session["logged_in"])
-    return redirect(url_for("userentries"))
+    res = request.args["recipe-id"].split(",")
+    user = res[0]
+    title = res[1]
+
+    db.remove_recipe(user, title)
+    flash("Recipe removed")
+    return redirect(url_for("profile"))
 
 @app.route("/viewuserrecipe")
 def viewuserrecipe():
     res = request.args["recipe-id"].split(",")
-    print("!@!$#@$$#@%#$")
-    print(res)
     user = res[0]
     title = res[1]
 

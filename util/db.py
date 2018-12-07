@@ -123,9 +123,22 @@ def check_recipe(user, recipe_name):
     db.close()
     return False
 
+def get_user_recipes(user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    recipes = []
+
+    for i in c.execute("select * from recipes where user ={}".format("'" + user + "'")):
+        recipes.append(i)
+
+    return recipes
+
+
 def remove_recipe(user, recipe_name):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+
     c.execute("DELETE FROM recipes WHERE user={} AND title={}".format("'" + user + "'", "'" + recipe_name + "'"))
 
     db.commit()
