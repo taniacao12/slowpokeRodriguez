@@ -26,7 +26,7 @@
         <div class="container-fluid">
         <div class="form-group">
             <label for="preference">Preferences (minimum of 3)</label>
-            <input type="text"  class="form-control" name="preference" placeholder="Preferences">
+            <input type="text"  class="form-control" name="preference" placeholder="ex: chicken, beans, rice">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         </div>
@@ -36,7 +36,29 @@
 <hr>
 <div class="container-fluid">
     <h3> My Recipes </h3>
-
+    <div class="row">
+    {% for recipe in recipes %}
+        <div class="col-sm-4">
+            <div class="card" style="width: 24rem;">
+                <img class="card-img-top" style="width:100%;object-fit:cover;height:15vw" src={{recipe[4]}}>
+                <div class="card-body">
+                    <h5 class="card-title">{{recipe[1]}}</h5>
+                    <p class="card-text">
+                    By: {{recipe[0]}}
+                    </p>
+            
+                    <form action="/viewuserrecipe">
+                        <button class="btn btn-primary" type="submit" name="recipe-id" value="{{recipe[0]}},{{recipe[1]}}">Read more</button>
+                    </form>
+                    <br>
+                    <form action="/removerecipe">
+                        <button class="btn btn-danger" type="submit" name="recipe-id" value="{{recipe[0]}},{{recipe[1]}}">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

@@ -54,9 +54,12 @@ def logout():
 @app.route("/profile")
 def profile():
     preferences = db.get_preference(session["logged_in"])
-    # print("app route preferencesd!!!!!: : : : ::")
-    #print(preferences)
-    return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True)
+
+#     # print("app route preferencesd!!!!!: : : : ::")
+#     #print(preferences)
+    recipes = db.get_user_recipes(session["logged_in"])
+    return render_template("profile.html", user=session["logged_in"], preferences=preferences, logged_in=True, recipes=recipes)
+
 
 @app.route("/auth")
 def auth():
@@ -80,6 +83,9 @@ def dbadd():
     image = request.args["link"]
     if not user or not recipe_name or not ingredients or not instructions:
         flash("Please fill in all fields")
+        return redirect(url_for("addrecipe"))
+    if db.check_recipe(user, recipe_name):
+        flash("You already have a recipe with that name")
         return redirect(url_for("addrecipe"))
     db.add_recipe(user, recipe_name, ingredients, instructions, image)
     return redirect(url_for("userentries"))
@@ -122,9 +128,31 @@ def viewrecipe():
 
 @app.route("/removerecipe")
 def removerecipe():
-    recipe_name = request.args["removing"]
-    db.remove_recipe(recipe_name)
-    return redirect(url_for("userentries"))
+    res = request.args["recipe-id"].split(",")
+    user = res[0]
+    title = res[1]
+
+    db.remove_recipe(user, title)
+    flash("Recipe removed")
+    return redirect(url_for("profile"))
+
+@app.route("/viewuserrecipe")
+def viewuserrecipe():
+    res = request.args["recipe-id"].split(",")
+    user = res[0]
+    title = res[1]
+
+    recipe = db.get_recipe_info(user, title);
+    print (recipe)
+
+    return render_template("viewuserrecipe.html", user=user,
+                                                  name=title,
+                                                  ingredients=recipe[2].split("\r\n"),
+                                                  directions=recipe[3].split("\r\n"),
+                                                  image_url=recipe[4],
+                                                  music=music.randyoutube())
+
+
 
 
 if __name__ == "__main__":

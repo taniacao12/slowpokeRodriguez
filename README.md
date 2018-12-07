@@ -14,7 +14,7 @@ $ git clone https://github.com/taniacao12/slowpokeRodriguez.git
 ```
 $ . <name_of_vEnv>/bin/activate
 ```
-4. Copy an API key from api_keys into api.py
+4. Copy api key files to root of project directory. (lastFM_keys.txt, youtube_keys.txt, yummly_key.txt)
 
 3. Run the app.py file with python
 ```
