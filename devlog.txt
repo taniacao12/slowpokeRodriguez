@@ -133,7 +133,6 @@ johnsonL -- 2018-12-06 20:13
 --------------------------------------------------------------
 0. user preferences now work with recipes
 ==============================================================
-<<<<<<< HEAD
 All -- 2018-12-05 21:00
 --------------------------------------------------------------
 0. replaced food2fork api with yummy to gain access to more food data
@@ -143,7 +142,7 @@ taniaC -- 2018-12-06 21:50
 0. upgraded web design
 1. updated summary doc
 2. updated devlog (added entries)
-=======
+==============================================================
 mohtasimH -- 2018-12-06 23:13
 --------------------------------------------------------------
 0. added lastfm and youtube api functions to get random music.
@@ -156,5 +155,4 @@ johnsonL -- 2018-12-07 01:16
 johnsonL -- 2018-12-07 02:46
 --------------------------------------------------------------
 0. added view user recipe page
->>>>>>> 366ac76cc4bfb796953fcb812c2a683ca7ea255b
 ==============================================================
